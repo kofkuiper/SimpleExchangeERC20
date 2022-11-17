@@ -60,6 +60,7 @@ contract ExchangeV2 {
         require(_amount == exchangeAmount, "!eq to exchange amount");
 
         state = State.EXCHANGED;
+        payable(bobAccount).transfer(msg.value);
         aliceToken.transferFrom(aliceAccount, bobAccount, _amount);
         bobToken.transfer(aliceAccount, _amount);
     }
